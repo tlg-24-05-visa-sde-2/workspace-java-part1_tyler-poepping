@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Lab01.1/Lab01.1.iml" filepath="$PROJECT_DIR$/Lab01.1/Lab01.1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../workspace/Scratch/Scratch.iml" filepath="$PROJECT_DIR$/../../workspace/Scratch/Scratch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab02.2/Lab02.2.iml" filepath="$PROJECT_DIR$/Lab02.2/Lab02.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Scratch/Scratch.iml" filepath="$PROJECT_DIR$/Scratch/Scratch.iml" />
     </modules>
   </component>
 </project>

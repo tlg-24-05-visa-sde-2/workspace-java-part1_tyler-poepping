@@ -1,8 +1,10 @@
+package src;
+
 public class Television {
-    private static int nextId = 1;
+    public static int nextId = 1;
     private static int instanceCount = 0;
-    private static final int MAX_VOLUME = 100;
-    private static final int MIN_VOLUME = 0;
+    public static final int MAX_VOLUME = 100;
+    public static final int MIN_VOLUME = 0;
 
     private int id;
     private String brand;
@@ -13,24 +15,17 @@ public class Television {
 
 
     // Constructors
-    public Television() {}
-
-    public Television(String brand) {
-        setBrand(brand);
-    }
-
-    public Television(String brand, int volume) {
-        this(brand);
-        setVolume(volume);
+    public Television() {
     }
 
     public Television(String brand, Integer volume, boolean muted, int savedVolume, DisplayType display) {
-        this(brand, volume);
         instanceCount++;
-        setId(nextId++);
-        setMuted(muted);
-        setSavedVolume(savedVolume);
-        setDisplay(display);
+        this.id = nextId++;
+        this.brand = brand;
+        this.volume = volume;
+        this.muted = muted;
+        this.savedVolume = savedVolume;
+        this.display = display;
     }
 
     // METHODS
@@ -43,7 +38,7 @@ public class Television {
      */
     public static int getInstanceCount(Television tv) {
         boolean isTv1Connected = tv.verifyInternetConnection();
-        if(isTv1Connected) {
+        if (isTv1Connected) {
             System.out.println("Turning on your " + tv.brand + " TV to volume " + tv.volume);
             System.out.println();
         } else {
@@ -55,8 +50,9 @@ public class Television {
     private boolean verifyInternetConnection() {
         return true;
     }
+
     public void turnOn() {
-        boolean isConnected =  verifyInternetConnection();
+        boolean isConnected = verifyInternetConnection();
         String connection = isConnected ? "TV is connected. " : "TV is not Connected";
         System.out.println("Turning on your " + brand + " TV to volume " + volume + ". " + "Your TV is " + connection);
     }
@@ -70,13 +66,17 @@ public class Television {
      * Every call we just set the opposite of what muted is
      */
     public void mute() {
-        setSavedVolume(this.getVolume()); // Set the savedVolume to the current volume
-        muted = !isMuted(); // Alternative: muted = isMuted() ? false  : true;
-        volume = muted ? MIN_VOLUME : savedVolume; // If muted = true ? volume = MIN_VOLUME : Else, volume = savedVolume
+        setSavedVolume(isMuted() ? getSavedVolume() : getVolume()); // Save current volume only if not muted
+        setMuted(!isMuted()); // Toggle the muted state
+        setVolume(isMuted() ? MIN_VOLUME : getSavedVolume()); // Set volume to MIN_VOLUME if muted, otherwise restore saved volume
 
-
-        // If muted is true, Print the first response, else print the second response
-        System.out.println(muted ? "TV is muted and the volume is " + this.getVolume() : "TV is unmuted and the volume is " + this.getVolume());
+        // Print the appropriate message
+        System.out.println(
+                isMuted() ?
+                        "TV is muted and the volume is " + getVolume() // If muted is true
+                        :
+                        "TV is un-muted and the volume is " + getVolume() // If it's not muted
+        );
     }
 
 
@@ -94,10 +94,39 @@ public class Television {
     }
 
     public void setBrand(String brand) {
-        switch (brand) {
-            case "Samsung", "Sony", "LG", "Toshiba" -> this.brand = brand;
-            default -> System.out.println("We don't do those TV's here sir");
+        // Alternative
+        if (
+                        "Samsung".equalsIgnoreCase(brand) ||
+                        "Sony".equalsIgnoreCase(brand) ||
+                        "LG".equalsIgnoreCase(brand) ||
+                        "Toshiba".equalsIgnoreCase(brand)
+        ) {
+            this.brand = brand;
+        } else {
+            System.err.println("Brand is invalid, Valid brands include 'Toshiba', 'Samsung', 'LG', or 'Toshiba'");
         }
+
+        // Alternative 2
+        switch (brand.toLowerCase()) {
+            case "samsung", "lg", "sony", "toshiba" -> this.brand = brand;
+            default -> System.err.println("We don't do those TV's here sir");
+        }
+
+        // Alternative 3
+//        String[] validBrands = new String[]{"Samsung", "Toshiba", "LG", "Sony"};
+//        boolean isValidBrand = false;
+//
+//        for (String b : validBrands) {
+//            if (brand.equalsIgnoreCase(b)) {
+//                this.brand = b;
+//                isValidBrand = true;
+//                break;
+//            }
+//        }
+//
+//        if (!isValidBrand) {
+//            System.err.println("We don't do those TV's here sir");
+//        }
     }
 
     public Integer getVolume() {
@@ -105,10 +134,11 @@ public class Television {
     }
 
     public void setVolume(Integer volume) {
-        if(volume > 100 || volume < 0) {
-            System.out.println("TV Cannot do that my boi!");
+        if (volume > MAX_VOLUME || volume < MIN_VOLUME) {
+            System.out.println("TV Cannot do that!");
         } else {
             this.volume = volume;
+            setMuted(false);
         }
     }
 
@@ -142,10 +172,9 @@ public class Television {
         return "Television: " +
                 "id=" + id +
                 ", brand='" + brand + '\'' +
-                ", volume=" + volume +
+                ", volume=" + (isMuted() ? "<muted>" : String.valueOf(getVolume())) +
                 ", muted=" + muted +
                 ", savedVolume=" + savedVolume +
-                ", display=" + display +
-                '}';
+                ", display=" + display;
     }
 }

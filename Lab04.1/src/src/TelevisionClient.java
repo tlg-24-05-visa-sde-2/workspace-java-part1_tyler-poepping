@@ -1,3 +1,5 @@
+package src;
+
 public class TelevisionClient {
     public static void main(String[] args) {
         // TV-1
@@ -11,6 +13,6 @@ public class TelevisionClient {
 
         Television tv2 = new Television("Toshiba", tv1.getVolume(), false, 30, DisplayType.OLED);
 
-        System.out.println(tv2);
+        System.out.println(tv2.toString());
     }
 }

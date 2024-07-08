@@ -113,20 +113,20 @@ public class Television {
         }
 
         // Alternative 3
-//        String[] validBrands = new String[]{"Samsung", "Toshiba", "LG", "Sony"};
-//        boolean isValidBrand = false;
-//
-//        for (String b : validBrands) {
-//            if (brand.equalsIgnoreCase(b)) {
-//                this.brand = b;
-//                isValidBrand = true;
-//                break;
-//            }
-//        }
-//
-//        if (!isValidBrand) {
-//            System.err.println("We don't do those TV's here sir");
-//        }
+        String[] validBrands = new String[]{"Samsung", "Toshiba", "LG", "Sony"};
+        boolean isValidBrand = false;
+
+        for (String b : validBrands) {
+            if (brand.equalsIgnoreCase(b)) {
+                this.brand = b;
+                isValidBrand = true;
+                break;
+            }
+        }
+
+        if (!isValidBrand) {
+            System.err.println("We don't do those TV's here sir");
+        }
     }
 
     public Integer getVolume() {

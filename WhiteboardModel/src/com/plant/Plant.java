@@ -25,7 +25,7 @@ public abstract class Plant {
 
     // Constructors
     public Plant() {
-        this(DEFAULT_COMMON_NAME);
+        this(DEFAULT_COMMON_NAME); // This delegates the Default commonName to the next constructor if one is not provided
     }
 
     public Plant(String commonName) {
@@ -56,7 +56,7 @@ public abstract class Plant {
         System.out.println("Your plant has died...");
     }
 
-    public abstract String grow();
+    public abstract String grow(); // We are returning a String for testing purposes, while this can be void we couldn't test it and ensure its called properly. With Mockito we could void this during testing, however we are not implementing Maven yet
 
     // Getters and Setters
     public String getCommonName() {

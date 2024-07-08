@@ -46,7 +46,6 @@ public class VegetablePlant extends Plant implements Harvestable {
         return "plant is growing";
     }
 
-    @Override
     public void harvest() {
         if (getHeightInInches() > 8.5 && getWidthInInches() > 4.5) {
             System.out.println("This was a bountiful " + getVegetableType() + " harvest");

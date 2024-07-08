@@ -5,7 +5,7 @@ import java.util.List;
 
 public class FruitPlant extends Plant implements Harvestable {
     private String fruitType;
-    private static final List<String> validFruits = Arrays.asList(
+    private static final List<String> VALID_FRUITS = Arrays.asList(
             "Apple", "Orange", "Banana", "Strawberry",
             "Grape", "Lemon", "Peach", "Pear", "Pineapple",
             "Watermelon", "Blueberry", "Blackberry"
@@ -44,9 +44,8 @@ public class FruitPlant extends Plant implements Harvestable {
         return "plant is growing";
     }
 
-    @Override
     public void harvest() {
-        if (getHeightInInches() > 7.0 && getWidthInInches() > 5.0) {
+        if (getHeightInInches() > 7.0 && 5.0 > getWidthInInches()) {
             System.out.println("This was a bountiful " + getFruitType() + " harvest");
         } else {
             System.out.println("This year's harvest was not great, try growing your plants more");
@@ -57,11 +56,11 @@ public class FruitPlant extends Plant implements Harvestable {
         if (fruitType == null || fruitType.trim().isEmpty()) {
             throw new IllegalArgumentException("Fruit type cannot be null or empty");
         }
-        if (validFruits.contains(fruitType.trim())) {
+        if (VALID_FRUITS.contains(fruitType.trim())) {
             this.fruitType = fruitType.trim();
         } else {
             System.out.println("That is not a valid fruit plant. Only the following fruits are valid:");
-            for (String fruit : validFruits) {
+            for (String fruit : VALID_FRUITS) {
                 System.out.println(fruit);
             }
         }

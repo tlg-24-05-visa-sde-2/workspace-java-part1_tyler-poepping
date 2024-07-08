@@ -14,6 +14,8 @@
  */
 import java.time.*;
 import java.time.format.*;
+import java.time.temporal.TemporalAdjusters;
+
 import static java.time.temporal.TemporalAdjusters.*;
 
 class DerivedDateTimeTest {
@@ -38,7 +40,9 @@ class DerivedDateTimeTest {
      * RESULT:
      */
     public static void testPresidentsFirst100Days() {
-        // TODO
+        LocalDate inauguration = LocalDate.of(2017, 1, 20);
+        LocalDate deadline = inauguration.plusDays(100);
+        System.out.println(deadline);
     }
 
     /**
@@ -49,9 +53,9 @@ class DerivedDateTimeTest {
      * RESULT:
      */
     public static void testPopularBirthdays() {
-        // TODO: what is the average birthday of someone conceived on Valentine's Day?
-
-        // TODO: what is the average birthday of someone conceived on New Year's Eve (after midnight)?
+        LocalDate valentinesDay = LocalDate.of(2023, 2, 23);
+        LocalDate expectedDate = valentinesDay.plusWeeks(38);
+        System.out.println(expectedDate);
     }
 
     /**
@@ -62,7 +66,9 @@ class DerivedDateTimeTest {
      * RESULT:
      */
     public static void testEarlyRetirement() {
-        // TODO
+        LocalDate myBday = LocalDate.of(1996, 8, 23);
+        LocalDate retirement = myBday.plusYears(59).plusMonths(6);
+        System.out.println(retirement);
     }
 
     /**
@@ -73,7 +79,9 @@ class DerivedDateTimeTest {
      * RESULT:
      */
     public static void testLaborDay() {
-        // TODO
+        LocalDate laborDay96 = LocalDate.of(1996, 9, 1);
+        LocalDate laborDay = laborDay96.with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY));
+        System.out.println(laborDay);
     }
 
     /**
@@ -83,7 +91,9 @@ class DerivedDateTimeTest {
      * RESULT:
      */
     public static void testElectionDay() {
-        // TODO
+        LocalDate nov2 = LocalDate.of(2024, 11, 2);
+        LocalDate elect = nov2.with(TemporalAdjusters.nextOrSame(DayOfWeek.TUESDAY));
+        System.out.println(elect);
     }
 
     /**
@@ -95,6 +105,8 @@ class DerivedDateTimeTest {
      * RESULT:
      */
     public static void testAnniversary() {
-        // TODO
+        LocalDate marriedOn = LocalDate.of(1969, 6, 6);
+        LocalDate party = marriedOn.plusYears(50).with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY));
+        System.out.println(party);
     }
 }

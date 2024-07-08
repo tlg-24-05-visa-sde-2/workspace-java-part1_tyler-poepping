@@ -3,15 +3,15 @@
  *
  * We use a couple different forms of data validation, in here we use a 'method' to validate our data and in our abstract classes we use the setter to validate our data. (Jay I did this for fun, in my experience, especially with spring, these are both viable solutions and comes down to the needs of each class and data being handled. I.E. I would validate at the class level with setters but also have validator methods for my service level to stop it before it even reaches the class. If im wrong on that let me know, but I've seen it both ways)
  *
- * Some plants are harvestable and some not, the harvestable plant class types implement the harvestable interface with signs the contract with the "harvest()" method.
+ * Some plants are harvestable and some not, the harvestable plant class types implement the harvestable interface which signs the contract with the "harvest()" method.
  *
  * Every plant can be watered and die, so we keep that here, however, we delegate the growth to each class that IS A plant because they will have their own growth factor/rate of growth.
  *
- * For ease of use and instantiation, I made multiple constructors for all the classes, while this is overkill and necessary it just made it easier for me to test and play with.
+ * For ease of use and instantiation, I made multiple constructors for all the classes, while this is overkill and not 100% necessary it just made it easier for me to test and play with.
  *
  */
 
-package com.plant;
+package gov.growth;
 
 public abstract class Plant {
     public static final double MIN_HEIGHT = 0.0;

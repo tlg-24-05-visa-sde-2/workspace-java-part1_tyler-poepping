@@ -1,4 +1,4 @@
-package com.plant;
+package gov.growth;
 
 public class CommonPlant extends Plant {
     public static final double HEIGHT_GROWTH_FACTOR = 1.2;

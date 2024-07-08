@@ -1,6 +1,10 @@
-package com.plant.client;
+package gov.growth.client;
 
-import com.plant.*;
+import gov.growth.*;
+import gov.growth.CommonPlant;
+import gov.growth.FruitPlant;
+import gov.growth.VegetablePlant;
+import gov.growth.WaterFrequency;
 
 
 public class PlantClient {

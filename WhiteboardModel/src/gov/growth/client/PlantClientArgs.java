@@ -1,7 +1,7 @@
-package com.plant.client;
+package gov.growth.client;
 
-import com.plant.CommonPlant;
-import com.plant.WaterFrequency;
+import gov.growth.CommonPlant;
+import gov.growth.WaterFrequency;
 
 import java.util.Arrays;
 

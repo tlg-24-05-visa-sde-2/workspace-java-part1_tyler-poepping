@@ -1,4 +1,4 @@
-package com.plant;
+package gov.growth;
 
 public enum WaterFrequency {
     DAILY,

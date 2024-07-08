@@ -1,4 +1,4 @@
-package com.plant;
+package gov.growth;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,6 +56,7 @@ public class FruitPlant extends Plant implements Harvestable {
         if (fruitType == null || fruitType.trim().isEmpty()) {
             throw new IllegalArgumentException("Fruit type cannot be null or empty");
         }
+
         if (VALID_FRUITS.contains(fruitType.trim())) {
             this.fruitType = fruitType.trim();
         } else {
@@ -63,6 +64,7 @@ public class FruitPlant extends Plant implements Harvestable {
             for (String fruit : VALID_FRUITS) {
                 System.out.println(fruit);
             }
+            throw new IllegalArgumentException("Invalid fruit type, please reference the above list for valid types");
         }
     }
 

@@ -2,7 +2,7 @@
  * For this test you can use any of the plant types. We just want to ensure we get errors when trying to create negative sized plants
  */
 
-package com.plant;
+package gov.growth;
 
 import org.junit.Before;
 import org.junit.Test;
